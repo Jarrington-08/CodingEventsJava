@@ -3,6 +3,7 @@ package org.launchcode.codingevents.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Size;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,9 @@ public class EventCategory extends AbstractEntity {
         this.name = name;
     }
 
+    @OneToMany(mappedBy = "eventCategory")
+    private final List<Event> events = new ArrayList<>();
+
     public EventCategory() {}
 
     public String getName() {
@@ -27,6 +31,10 @@ public class EventCategory extends AbstractEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Event> getEvents() {
+        return events;
     }
 
     @Override
